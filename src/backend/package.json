@@ -1,0 +1,23 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "api.ts",
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "type": "module",
+    "dependencies": {
+        "@hono/node-server": "^1.13.0",
+        "better-sqlite3": "^11.3.0",
+        "drizzle-orm": "^0.33.0",
+        "hono": "^4.6.2",
+        "tsx": "^4.19.1"
+    },
+    "devDependencies": {
+        "@types/better-sqlite3": "^7.6.11",
+        "@typescript-eslint/eslint-plugin": "^8.6.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "name": "homework2-dev",
+    "module": "index.ts",
+    "type": "module",
+    "devDependencies": {
+        "@eslint/compat": "^1.1.1",
+        "@testing-library/jest-dom": "^6.4.5",
+        "@testing-library/react": "^14.1.0",
+        "@testing-library/user-event": "^14.5.2",
+        "concurrently": "^9.0.1",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.57.1",
+        "eslint-plugin-react": "^7.36.1",
+        "eslint-plugin-react-hooks": "^4.6.2",
+        "eslint-plugin-react-refresh": "^0.4.12",
+        "jsdom": "^25.0.0",
+        "prettier": "^3.3.3"
+    },
+    "dependencies": {
+        "typescript": "^5.5.4",
+        "vite-tsconfig-paths": "^5.0.1"
+    },
+    "scripts": {
+        "start:frontend": "vite",
+        "start:backend": "tsx src/backend/api.ts",
+        "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+        "build": "vite build",
+        "postinstall": "node src/backend/seed.js",
+        "test": "concurrently \"npm run start\" \"vitest run --reporter json --reporter default --outputFile.json=vitest_result.json\" --kill-others --success first",
+        "pretest": "npx playwright install chromium",
+        "format-write": "prettier . --write",
+        "format": "prettier src --check",
+        "typecheck": "tsc --project tsconfig.json --noEmit",
+        "lint": "cross-env DEBUG=eslint:cli-engine eslint src --max-warnings 0"
+    },
+    "workspaces": [
+        "src/frontend",
+        "src/backend"
+    ]
+}
