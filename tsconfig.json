@@ -1,16 +1,16 @@
 {
     "compilerOptions": {
         // Enable latest features
-        "lib": ["ESNext", "DOM"],
+        "lib": [ "ESNext", "DOM" ],
         "target": "ESNext",
         "module": "ESNext",
         "moduleDetection": "force",
-        "jsx": "react-jsx",
+        "jsx": "react",
         "allowJs": true,
-        "types": ["vitest/globals"],
-
+        "types": [ "vitest/globals" ],
+        "allowSyntheticDefaultImports": true,
         // Bundler mode
-        "moduleResolution": "bundler",
+        "moduleResolution": "node",
         "allowImportingTsExtensions": true,
         "verbatimModuleSyntax": true,
         "noEmit": true,
@@ -25,5 +25,5 @@
         "noUnusedParameters": false,
         "noPropertyAccessFromIndexSignature": false
     },
-    "exclude": ["node_modules", "src/frontend/tests"]
+    "exclude": [ "node_modules", "src/frontend/tests" ]
 }
