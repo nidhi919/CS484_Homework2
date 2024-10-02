@@ -24,6 +24,8 @@ const StatusBanner: React.FC<StatusBannerProps> = ({ message, onClose }) => {
         }
     }, [message, onClose]);
 
+
+
     return (
         <>
             {!isVisible && <></>}

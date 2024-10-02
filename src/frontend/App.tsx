@@ -44,7 +44,7 @@ function App() {
                 setTotalPages(result.totalPages);
             } catch (error) {
                 // Handle any errors by updating the status
-                setStatus('Failed to load products');
+                setStatus('Failed to load products. Unable to connect to the server.');
             }
 
 
@@ -61,7 +61,7 @@ function App() {
             setShowForm('none'); // Hide form
             setCurrentPage(1); // Reset to first page
         } catch (error) {
-            setStatus('Failed to add product');
+            setStatus('Failed to add product. Unable to connect to the server.');
         }
     };
 
@@ -72,7 +72,7 @@ function App() {
             setShowForm('none'); // Hide form
             setCurrentPage(1); // Reset to first page
         } catch (error) {
-            setStatus('Failed to delete product');
+            setStatus('Failed to delete product. Unable to connect to the server.');
         }
     };
 
