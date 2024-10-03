@@ -58,7 +58,7 @@ export const addProduct = async (product: Omit<Product, 'id'>) => {
     if (!response.ok) {
         throw new Error('Failed to add product')
     }
-    return response.json();
+    return await response.json();
 }
 
 export const updateProduct = async (id: number, product: Partial<Product>) => {

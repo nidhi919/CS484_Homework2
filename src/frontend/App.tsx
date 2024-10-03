@@ -21,7 +21,9 @@ function App() {
     const [currentPage, setCurrentPage] = useState(1); // Pagination
     const [totalPages, setTotalPages] = useState(1);
     const [showForm, setShowForm] = useState('none'); // Form visibility
-    const [products, setProducts] = useState([]); // List of products
+    //const [products, setProducts] = useState([]); // List of products
+    const [products, setProducts] = useState<Product[]>([]); // Change here
+
     const [status, setStatus] = useState(''); // Status for error or success messages
     //const query = '';
     //const currentPage = 1;
@@ -56,7 +58,8 @@ function App() {
 
     const handleAddProduct = async (newProduct: Omit<Product, 'id'>) => {
         try {
-            await addProduct(newProduct); // Add product to backend
+            const addedProducts = await addProduct(newProduct); // Add product to backend
+            setProducts((prevProducts) => [...prevProducts, addedProducts]); // Add to products state
             setStatus('Product added successfully');
             setShowForm('none'); // Hide form
             setCurrentPage(1); // Reset to first page
