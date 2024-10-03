@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import type { Product } from './types';
+import type { Product } from './types'
 import ProductList from './components/ProductList'
 import ProductForm from './components/ProductForm'
 import Search from './components/Search'
@@ -15,21 +15,18 @@ function App() {
     // The variable showForm should assume the values "add", "delete", or "none".
     // You're free to either create a type for this or not.
 
-
-
-    const [query, setQuery] = useState(''); // Search query
-    const [currentPage, setCurrentPage] = useState(1); // Pagination
-    const [totalPages, setTotalPages] = useState(1);
-    const [showForm, setShowForm] = useState('none'); // Form visibility
+    const [query, setQuery] = useState('') // Search query
+    const [currentPage, setCurrentPage] = useState(1) // Pagination
+    const [totalPages, setTotalPages] = useState(1)
+    const [showForm, setShowForm] = useState('none') // Form visibility
     //const [products, setProducts] = useState([]); // List of products
-    const [products, setProducts] = useState<Product[]>([]); // Change here
+    const [products, setProducts] = useState<Product[]>([]) // Change here
 
-    const [status, setStatus] = useState(''); // Status for error or success messages
+    const [status, setStatus] = useState('') // Status for error or success messages
     //const query = '';
     //const currentPage = 1;
     //const showForm = 'none';
     //const products = [];
-
 
     useEffect(() => {
         const loadProducts = async () => {
@@ -39,45 +36,49 @@ function App() {
             // If there's an error, set the status state variable to the error message "Failed to load products".
             try {
                 // Fetch products using the fetchProducts function
-                const result = await fetchProducts(query, currentPage);
-                console.log(result);
+                const result = await fetchProducts(query, currentPage)
+                console.log(result)
                 // Assuming result has a structure like { products: [...], totalPages: X }
-                setProducts(result.products); // Set the products fetched from the API
-                setTotalPages(result.totalPages);
+                setProducts(result.products) // Set the products fetched from the API
+                setTotalPages(result.totalPages)
             } catch (error) {
                 // Handle any errors by updating the status
-                setStatus('Failed to load products. Unable to connect to the server.');
+                setStatus(
+                    'Failed to load products. Unable to connect to the server.'
+                )
             }
+        }
 
-
-        };
-
-        loadProducts();
-
-    }, [query, currentPage]);
+        loadProducts()
+    }, [query, currentPage])
 
     const handleAddProduct = async (newProduct: Omit<Product, 'id'>) => {
         try {
-            const addedProducts = await addProduct(newProduct); // Add product to backend
-            setProducts((prevProducts) => [...prevProducts, addedProducts]); // Add to products state
-            setStatus('Product added successfully');
-            setShowForm('none'); // Hide form
-            setCurrentPage(1); // Reset to first page
+            const addedProducts = await addProduct(newProduct) // Add product to backend
+            setProducts((prevProducts) => [...prevProducts, addedProducts]) // Add to products state
+            setStatus('Product added successfully')
+            setShowForm('none') // Hide form
+            setCurrentPage(1) // Reset to first page
         } catch (error) {
-            setStatus('Failed to add product. Unable to connect to the server.');
+            setStatus('Failed to add product. Unable to connect to the server.')
         }
-    };
+    }
 
     const handleDeleteProduct = async (productId: number) => {
         try {
-            await deleteProduct(productId); // Delete product from backend
-            setStatus('Product deleted successfully');
-            setShowForm('none'); // Hide form
-            setCurrentPage(1); // Reset to first page
+            await deleteProduct(productId) // Delete product from backend
+            setProducts((prevProducts) =>
+                prevProducts.filter((product) => product.id !== productId)
+            ) // Update state to remove deleted product
+            setStatus('Product deleted successfully')
+            setShowForm('none') // Hide form
+            setCurrentPage(1) // Reset to first page
         } catch (error) {
-            setStatus('Failed to delete product. Unable to connect to the server.');
+            setStatus(
+                'Failed to delete product. Unable to connect to the server.'
+            )
         }
-    };
+    }
 
     return (
         <div>
@@ -124,15 +125,14 @@ function App() {
             {showForm === 'add' && (
                 <ProductForm
                     mode="add"
-                    //onSubmit={handleAddProduct} // Add the onSubmit handler for adding products
+                    onSubmit={handleAddProduct} // Add the onSubmit handler for adding products
                     onProductAdded={() => {
-                        setShowForm('none'); // Hide form after adding
-                        setCurrentPage(1); // Refresh product list
+                        setShowForm('none') // Hide form after adding
+                        setCurrentPage(1) // Refresh product list
                     }}
                     onCancel={() => setShowForm('none')} // Handle cancel
-            />
+                />
             )}
-
 
             {/* TODO Add the necessary props to the underlying component.
             When removing a product, tou should set the status message to
@@ -141,10 +141,10 @@ function App() {
             {showForm === 'delete' && (
                 <ProductForm
                     mode="delete"
-                    //onSubmit={handleDeleteProduct} // Add the onSubmit handler for deleting products
+                    onSubmit={handleDeleteProduct} // Add the onSubmit handler for deleting products
                     onProductDeleted={() => {
-                        setShowForm('none'); // Hide form after deleting
-                        setCurrentPage(1); // Refresh product list
+                        setShowForm('none') // Hide form after deleting
+                        setCurrentPage(1) // Refresh product list
                     }}
                     onCancel={() => setShowForm('none')} // Handle cancel
                 />
@@ -167,7 +167,7 @@ function App() {
                 </>
             )}
         </div>
-    );
+    )
 }
 
-export default App;
+export default App

@@ -3,15 +3,13 @@ import type { Product } from '../types'
 import ProductCard from './ProductCard'
 import '../public/ProductList.css'
 
-
 // TODO
 // Implement the ProductListProps interface.
 interface ProductListProps {
-    products: Product[];
-    currentPage: number;
-    totalPages: number;
-    setCurrentPage: (page: number) => void;
-
+    products: Product[]
+    currentPage: number
+    totalPages: number
+    setCurrentPage: (page: number) => void
 }
 
 const ProductList: React.FC<ProductListProps> = ({
@@ -22,7 +20,7 @@ const ProductList: React.FC<ProductListProps> = ({
 }) => {
     //render pagination links
     const renderPaginationLinks = () => {
-        const links = [];
+        const links = []
 
         for (let i = 1; i <= totalPages; i++) {
             links.push(
@@ -31,14 +29,13 @@ const ProductList: React.FC<ProductListProps> = ({
                     href="#"
                     className={i === currentPage ? 'active' : ''}
                     onClick={(e) => {
-                        e.preventDefault();
-                        setCurrentPage(i);
+                        e.preventDefault()
+                        setCurrentPage(i)
                     }}
                 >
                     {i}
-
                 </a>
-            );
+            )
         }
         // TODO
         // Here you should populate the "links" array with JSX elements for each page number.
@@ -46,8 +43,8 @@ const ProductList: React.FC<ProductListProps> = ({
         // The current page should have the class "active".
         // Make sure to handle the click event.
 
-        return links;
-    };
+        return links
+    }
 
     return (
         <div className="product-list">
@@ -60,14 +57,12 @@ const ProductList: React.FC<ProductListProps> = ({
 
                     {products.map((product) => (
                         <ProductCard key={product.id} product={product} />
-                    ))
-
-                    }
+                    ))}
                 </div>
             )}
             <div className="pagination">{renderPaginationLinks()}</div>
         </div>
-    );
-};
+    )
+}
 
-export default ProductList;
+export default ProductList

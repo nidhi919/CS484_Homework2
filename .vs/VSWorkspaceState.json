@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\src",
+    "\\src\\backend",
+    "\\src\\frontend",
+    "\\src\\frontend\\components",
+    "\\src\\frontend\\public"
+  ],
+  "SelectedNode": "\\src\\frontend\\types.ts",
+  "PreviewInSolutionExplorer": false
+}

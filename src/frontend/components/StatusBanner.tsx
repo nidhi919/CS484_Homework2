@@ -4,8 +4,8 @@ import '../public/StatusBanner.css'
 // TODO
 // Implement the StatusBannerProps interface.
 interface StatusBannerProps {
-    message: string;
-    onClose: () => void;
+    message: string
+    onClose: () => void
 }
 
 const StatusBanner: React.FC<StatusBannerProps> = ({ message, onClose }) => {
@@ -15,16 +15,14 @@ const StatusBanner: React.FC<StatusBannerProps> = ({ message, onClose }) => {
     // If there is a message to be shown, display it for 5 seconds and then close the banner.
     useEffect(() => {
         if (message) {
-            setIsVisible(true);
+            setIsVisible(true)
             const timer = setTimeout(() => {
-                setIsVisible(false);
-                onClose();
-            }, 5000);
-            return () => clearTimeout(timer);
+                setIsVisible(false)
+                onClose()
+            }, 5000)
+            return () => clearTimeout(timer)
         }
-    }, [message, onClose]);
-
-
+    }, [message, onClose])
 
     return (
         <>
@@ -46,4 +44,4 @@ const StatusBanner: React.FC<StatusBannerProps> = ({ message, onClose }) => {
     )
 }
 
-export default StatusBanner;
+export default StatusBanner

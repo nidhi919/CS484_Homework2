@@ -4,28 +4,27 @@ import type { Product } from '../types'
 
 //const baseUrl = '/api/products'; // Change this line
 
-const baseUrl = 'http://localhost:3000/products'; // Use the full URL
-
+const baseUrl = 'http://localhost:3000/products' // Use the full URL
 
 export const fetchProducts = async (query = '', page = 1) => {
     // TODO Fetch the products from the API
     const response = await fetch(
         `${baseUrl}?query=${query}&page=${page}` // Use baseUrl here
-    );
+    )
 
-    if (response.ok) { console.log("YES") }
+    if (response.ok) {
+        console.log('YES')
+    }
     /*console.log(response.json());*/
 
     if (!response.ok) {
-        console.log("Failed")
+        console.log('Failed')
         throw new Error('Failed to fetch products')
-        
     }
-    const data = await response.json();
+    const data = await response.json()
     //console.log(response.json());
-    console.log(data);
-    return data;
-   
+    console.log(data)
+    return data
 }
 
 //export const fetchProducts = async (query = '', page = 1) => {
@@ -54,11 +53,11 @@ export const addProduct = async (product: Omit<Product, 'id'>) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(product),
-    });
+    })
     if (!response.ok) {
         throw new Error('Failed to add product')
     }
-    return await response.json();
+    return response.json()
 }
 
 export const updateProduct = async (id: number, product: Partial<Product>) => {

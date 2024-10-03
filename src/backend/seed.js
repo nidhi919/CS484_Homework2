@@ -23,15 +23,13 @@ export function wipe() {
     sqlite.close()
 }
 
-
-
-import { resolve } from "path";
-import { pathToFileURL } from "url";
-import path from "path";
-const scriptPath = path.resolve(process.argv[1]);
-const scriptURL = pathToFileURL(scriptPath).href;
+import { resolve } from 'path'
+import { pathToFileURL } from 'url'
+import path from 'path'
+const scriptPath = path.resolve(process.argv[1])
+const scriptURL = pathToFileURL(scriptPath).href
 if (import.meta.url === scriptURL) {
-    await seed();
+    await seed()
 }
 
 //if (import.meta.url === `file://${process.argv[1]}`) {
