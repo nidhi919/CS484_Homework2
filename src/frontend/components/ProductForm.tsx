@@ -42,6 +42,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                 if (onProductAdded) onProductAdded() // Call the callback if provided
                 setName('') // Reset form state
                 setImageUrl('')
+                onProductAdded?.()
                 // TODO
                 // Call the correct function from the api module (located in components/api.ts) to add a product
                 // and reset the state of the component. The view should go back to the list of products.
@@ -50,6 +51,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
                 //onSubmit(Number(productId)); // Ensure productId is a number
                 if (onProductDeleted) onProductDeleted() // Call the callback if provided
                 setProductId('') // Reset form state
+                onProductDeleted?.()
                 // TODO
                 // Call the correct function from the api module (located in components/api.ts) to delete a product
                 // and reset the state of the component. The view should go back to the list of products.

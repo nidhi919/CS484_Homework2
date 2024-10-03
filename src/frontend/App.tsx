@@ -67,6 +67,7 @@ function App() {
 
     const handleDeleteProduct = async (productId: number) => {
         try {
+            //deleted = false
             await deleteProduct(productId) // Delete product from backend
             //setProducts((prevProducts) =>
             //    prevProducts.filter((product) => product.id !== productId)
