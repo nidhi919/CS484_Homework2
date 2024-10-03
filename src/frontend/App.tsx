@@ -55,7 +55,8 @@ function App() {
     const handleAddProduct = async (newProduct: Omit<Product, 'id'>) => {
         try {
             const addedProducts = await addProduct(newProduct) // Add product to backend
-            setProducts((prevProducts) => [...prevProducts, addedProducts]) // Add to products state
+            //setProducts((prevProducts) => [...prevProducts, addedProducts]) // Add to products state
+            //Product.deleted = true;
             setStatus('Product added successfully')
             setShowForm('none') // Hide form
             setCurrentPage(1) // Reset to first page
@@ -67,9 +68,17 @@ function App() {
     const handleDeleteProduct = async (productId: number) => {
         try {
             await deleteProduct(productId) // Delete product from backend
+            //setProducts((prevProducts) =>
+            //    prevProducts.filter((product) => product.id !== productId)
+            //) // Update state to remove deleted product
+
             setProducts((prevProducts) =>
-                prevProducts.filter((product) => product.id !== productId)
-            ) // Update state to remove deleted product
+                prevProducts.map((product) =>
+                    product.id === productId ? { ...product, deleted: true } : product
+                )
+            );
+
+
             setStatus('Product deleted successfully')
             setShowForm('none') // Hide form
             setCurrentPage(1) // Reset to first page

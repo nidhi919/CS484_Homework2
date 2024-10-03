@@ -14,6 +14,7 @@ interface ProductFormProps {
     //onSubmit: (productId: number) => void; // Adjust type if necessary
     //onSubmit: (product: Omit<Product, 'id'>) => void; // For 'add' mode
     onSubmit: (input: Omit<Product, 'id'> | number) => void // Accepts either a product or product ID
+    //onSubmit: (input: mode extends 'add' ? Omit<Product, 'id'> : number) => void; // Adjust type based on mode
     onCancel: () => void
     deleteMode?: boolean
 }
